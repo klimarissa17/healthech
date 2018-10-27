@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from .models import Drug
 
 
-def index(request):
-    return HttpResponse('heloworld')
+def home(request):
+    return HttpResponse('hello')
 
 
 def drugs_list(request):
