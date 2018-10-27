@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Drugs(models.Model):
+class Drug(models.Model):
     name = models.TextField()
     active_substance = models.TextField()
     indications = models.TextField()
@@ -10,21 +10,21 @@ class Drugs(models.Model):
     mode_of_application = models.TextField()
 
 
-class Diseases(models.Model):
+class Disease(models.Model):
     name = models.TextField()
     origin = models.TextField()
     forecast = models.TextField()
     drug_category = models.TextField()
+    last_visit = models.DateTimeField()
 
-
-class Patients(models.Model):
+class Patient(models.Model):
     name = models.TextField()
     age = models.IntegerField()
     sex = models.TextField()
     specificities = models.TextField()
 
 
-class Doctors(models.Model):
+class Doctor(models.Model):
     name = models.TextField()
     age = models.IntegerField()
     sex = models.TextField()
