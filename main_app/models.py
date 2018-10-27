@@ -35,18 +35,18 @@ class Doctor(models.Model):
 
 
 class Receipt(models.Model):
-    doctor_id = models.ForeignKey(Doctors, on_delete=models.CASCADE)
-    patient_id = models.ForeignKey(Patients, on_delete=models.CASCADE)
-    disease_id = models.ForeignKey(Diseases, on_delete=models.CASCADE)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    disease_id = models.ForeignKey(Disease, on_delete=models.CASCADE)
     is_critical = models.BooleanField()
 
 
-class DrugsByReceipt(models.Model):
+class DrugByReceipt(models.Model):
     receipt_id = models.ForeignKey(Receipt, on_delete=models.CASCADE)
-    drug_id = models.ForeignKey(Drugs, on_delete=models.CASCADE)
+    drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE)
 
 
-class PatientsDiseases(models.Model):
-    patient_id = models.ForeignKey(Patients, on_delete=models.CASCADE)
-    disease_id = models.ForeignKey(Diseases, on_delete=models.CASCADE)
+class PatientDisease(models.Model):
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    disease_id = models.ForeignKey(Disease, on_delete=models.CASCADE)
 
