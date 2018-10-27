@@ -9,6 +9,9 @@ class Drug(models.Model):
     contraindications = models.TextField()
     mode_of_application = models.TextField()
 
+    def get_name(self):
+        return str(self.name)
+
 
 class Disease(models.Model):
     name = models.TextField()
