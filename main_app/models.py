@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Drugs(models.Model):
+class Drug(models.Model):
     name = models.TextField()
     active_substance = models.TextField()
     indications = models.TextField()
@@ -13,21 +13,21 @@ class Drugs(models.Model):
         return str(self.name)
 
 
-class Diseases(models.Model):
+class Disease(models.Model):
     name = models.TextField()
     origin = models.TextField()
     forecast = models.TextField()
     drug_category = models.TextField()
+    last_visit = models.DateTimeField()
 
-
-class Patients(models.Model):
+class Patient(models.Model):
     name = models.TextField()
     age = models.IntegerField()
     sex = models.TextField()
     specificities = models.TextField()
 
 
-class Doctors(models.Model):
+class Doctor(models.Model):
     name = models.TextField()
     age = models.IntegerField()
     sex = models.TextField()
@@ -35,18 +35,18 @@ class Doctors(models.Model):
 
 
 class Receipt(models.Model):
-    doctor_id = models.ForeignKey(Doctors, on_delete=models.CASCADE)
-    patient_id = models.ForeignKey(Patients, on_delete=models.CASCADE)
-    disease_id = models.ForeignKey(Diseases, on_delete=models.CASCADE)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    disease_id = models.ForeignKey(Disease, on_delete=models.CASCADE)
     is_critical = models.BooleanField()
 
 
-class DrugsByReceipt(models.Model):
+class DrugByReceipt(models.Model):
     receipt_id = models.ForeignKey(Receipt, on_delete=models.CASCADE)
-    drug_id = models.ForeignKey(Drugs, on_delete=models.CASCADE)
+    drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE)
 
 
-class PatientsDiseases(models.Model):
-    patient_id = models.ForeignKey(Patients, on_delete=models.CASCADE)
-    disease_id = models.ForeignKey(Diseases, on_delete=models.CASCADE)
+class PatientDisease(models.Model):
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    disease_id = models.ForeignKey(Disease, on_delete=models.CASCADE)
 
