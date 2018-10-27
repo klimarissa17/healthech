@@ -35,6 +35,7 @@ class Receipt(models.Model):
     doctor_id = models.ForeignKey(Doctors, on_delete=models.CASCADE)
     patient_id = models.ForeignKey(Patients, on_delete=models.CASCADE)
     disease_id = models.ForeignKey(Diseases, on_delete=models.CASCADE)
+    is_critical = models.BooleanField()
 
 
 class DrugsByReceipt(models.Model):
