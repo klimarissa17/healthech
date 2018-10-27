@@ -27,14 +27,13 @@ class Patient(models.Model):
     age = models.IntegerField()
     sex = models.TextField()
     specificities = models.TextField(blank= True)
-
     def __str__(self):
         return str(self.name)
 
 
 class Doctor(models.Model):
     name = models.TextField()
-    age = models.IntegerField()
+    expirience = models.SmallIntegerField(blank= True, null=True)
     specialty = models.TextField(blank= True)
 
     def __str__(self):
@@ -57,4 +56,12 @@ class DrugByReceipt(models.Model):
 class PatientDisease(models.Model):
     patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
     disease_id = models.ForeignKey(Disease, on_delete=models.CASCADE)
+
+class Day(models.Model):
+    date = models.DateField()
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    smile = models.IntegerField()
+    
+    def __str__(self):
+        return str(self.date)
 
