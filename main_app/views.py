@@ -9,5 +9,5 @@ def home(request):
 
 def drugs_list(request):
     drugs = Drug.objects.all()
-    drugs = [d.get_name() for d in drugs]
+    drugs = [str(d) for d in drugs]
     return render(request, 'main_app/drugs_list.html', {'drugs': drugs})
