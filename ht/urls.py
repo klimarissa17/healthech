@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import TemplateView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 
 urlpatterns = [
@@ -24,5 +26,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('main_app', include('main_app.urls')),
     path('', include('main_app.urls')),
-    path('', TemplateView.as_view(template_name='home.html'), name='home')
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
 ]
