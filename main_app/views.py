@@ -42,8 +42,9 @@ def patient_home(request):
     drug_obj = DrugByReceipt.objects.get(receipt_id= receipt)
     drug_id = model_to_dict(drug_obj)['drug_id']
     drug = model_to_dict(Drug.objects.get(id= drug_id))['name']
+    drug_info = model_to_dict(Drug.objects.get(id= drug_id))['mode_of_application']
     info1 = 'lorem ipsum dolor'
-    info2 = 'vzurb[ ahfyweprb[ ,ekjr' 
+     
     print(diagnosis)
     # today = datetime.date.now()
     # today = timezone.now()
@@ -53,7 +54,7 @@ def patient_home(request):
         smile = model_to_dict(Day.objects.get(date= today, patient_id= id))['smile']
     except Day.DoesNotExist:
         smile = None
-    return render(request, 'main_app/patient_home.html', {'name': name,'disease': diagnosis,  'name_of_med': drug, 'prescription':info1, 'disease_info': info2 })
+    return render(request, 'main_app/patient_home.html', {'name': name,'disease': diagnosis,  'name_of_med': drug, 'prescription':drug_info, 'disease_info': info1 })
 
 
 def drugs_list(request):
