@@ -30,11 +30,11 @@
 <div class="col-md-6">
 <body class="text-center">
   <div class="jumbotron-fluid">
-    <h1 class="display-4">Hello, Mr Bond!</h1>
-    <p class="lead">You were recently prescribed {Name of Med}. You must take this or else you will die</p>
+    <h1 class="display-4">Hello, {{name}}!</h1>
+    <p class="lead">You were recently prescribed {{name_of_med}}. You must take this or else you will die</p>
     <hr class="my-4">
   <ul class="list-unstyled">
-    <li><strong>Diagnosis</strong> You have been perscribed to have too much courage and swagger</li>
+    <li><strong>Diagnosis</strong> You are sick with {{disease}}</li>
       <li><strong>Prognosis</strong> You must drink a martini by the pool and chillax or you run the risk of becoming Austin Powers</li>
   </ul>
 
@@ -45,14 +45,14 @@
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          More information about persription
+          More information about prescription
         </button>
       </h5>
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        {{prescription}}
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        {{disease_info}}
       </div>
     </div>
   </div>

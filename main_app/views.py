@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Drug, Disease, Patient, Doctor, PatientDisease, Day
+from .models import Drug, Disease, Patient, Doctor, PatientDisease, Day, Receipt, DrugByReceipt
 from django.forms.models import model_to_dict
 import datetime
 from django.utils import timezone
@@ -32,8 +32,19 @@ def patient_home(request):
     id = patient['id']
     qs = PatientDisease.objects.filter(patient_id = id)
     diagnosises_list = [model_to_dict(d)['disease_id'] for d in qs]
-    diagnosises = [str(Disease.objects.get(id= i)) for i in diagnosises_list]
-    print(diagnosises)
+    diagnosis = [str(Disease.objects.get(id= i)) for i in diagnosises_list][0]
+    disease_id = diagnosises_list[0] 
+    print(disease_id)
+    receipt_obj = Receipt.objects.get(disease_id= disease_id, patient_id= id)
+    print(receipt_obj)
+    receipt = model_to_dict(receipt_obj)['id']
+    print(receipt)
+    drug_obj = DrugByReceipt.objects.get(receipt_id= receipt)
+    drug_id = model_to_dict(drug_obj)['drug_id']
+    drug = model_to_dict(Drug.objects.get(id= drug_id))['name']
+    info1 = 'lorem ipsum dolor'
+    info2 = 'vzurb[ ahfyweprb[ ,ekjr' 
+    print(diagnosis)
     # today = datetime.date.now()
     # today = timezone.now()
     today = datetime.datetime.now().date()
@@ -42,7 +53,7 @@ def patient_home(request):
         smile = model_to_dict(Day.objects.get(date= today, patient_id= id))['smile']
     except Day.DoesNotExist:
         smile = None
-    return render(request, 'main_app/patient_home.html', {})
+    return render(request, 'main_app/patient_home.html', {'name': name,'disease': diagnosis,  'name_of_med': drug, 'prescription':info1, 'disease_info': info2 })
 
 
 def drugs_list(request):
