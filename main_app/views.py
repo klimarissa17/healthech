@@ -1,21 +1,47 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Drug
-
-
+from .models import Drug, Disease, Patient, Doctor, PatientDisease, Day
+from django.forms.models import model_to_dict
+import datetime
+from django.utils import timezone
 def home(request):
     if not request.user.is_authenticated:
         return render(request, 'home.html')
     elif ('Doctors',) in request.user.groups.values_list('name'):
         return doctor_home(request)
     elif ('Patients',) in request.user.groups.values_list('name'):
+        patient_home(request)
         return patient_home(request)
     return HttpResponse('You\'re neither a doctor nor a patient!')
 
-def doctor_home(request):
+def doctor_home(request): 
+    user = request.user
+    doctor = Doctor.objects.get(login= user)
+    name = doctor.name
+    patients = Patient.objects.all()
+    patients = [str(p) for p in patients]
     return render(request, 'main_app/doctor_home.html', {  })
 
 def patient_home(request):
+    #print(request.user)
+    user = request.user
+    patient_obj = Patient.objects.get(login= user)
+    patient = model_to_dict(patient_obj)
+    name = patient['name']
+    print(name)
+    id = patient['id']
+    qs = PatientDisease.objects.filter(patient_id = id)
+    diagnosises_list = [model_to_dict(d)['disease_id'] for d in qs]
+    diagnosises = [str(Disease.objects.get(id= i)) for i in diagnosises_list]
+    print(diagnosises)
+    # today = datetime.date.now()
+    # today = timezone.now()
+    today = datetime.datetime.now().date()
+    print(today)
+    try:
+        smile = model_to_dict(Day.objects.get(date= today, patient_id= id))['smile']
+    except Day.DoesNotExist:
+        smile = None
     return render(request, 'main_app/patient_home.html', {})
 
 
@@ -23,3 +49,6 @@ def drugs_list(request):
     drugs = Drug.objects.all()
     drugs = [str(d) for d in drugs]
     return render(request, 'main_app/drugs_list.html', {'drugs': drugs})
+
+
+
