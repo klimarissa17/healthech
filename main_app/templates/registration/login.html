@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% csrf_token %}
+
 {% load static %}
 <html>
 <head>
@@ -15,7 +17,6 @@
 </head>
 
 <body class="text-center">
-  <form class="form-signin">
   <h1 class="h3 mb-3 font-weight-normal" >Login</h1>
 <form method="post">
   {% csrf_token %}
@@ -25,8 +26,7 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-  <button type="submit" type="button" class="btn btn-primary">Login</button>
-</form>
+  <button type="submit" action= '/home' type="button" class="btn btn-primary">Login</button>
 </form>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
