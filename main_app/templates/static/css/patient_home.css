@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100%;
+}
+ body {
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #005bea;;
+}
+
+.button-wrapper .btn {
+    margin-bottom:20px;
+}
+.text-center a {
+  background-color: #005bea;
+}
+
+button {
+  font-family: 'Noto Serif', serif;
+  font-size: 15px;
+}
+
+.col-md-3 {
+    text-align: justify;
+  }
